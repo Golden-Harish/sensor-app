@@ -1,0 +1,51 @@
+cmake:
+  application:
+    configuration-dir: /home/golden-devadhas/zephyrproject/sensor-app/app
+    source-dir: /home/golden-devadhas/zephyrproject/sensor-app/app
+  board:
+    name: nucleo_l496zg
+    qualifiers: stm32l496xx
+    revision: 
+  devicetree:
+    bindings-dirs:
+     - /home/golden-devadhas/zephyrproject/sensor-app/dts/bindings
+     - /home/golden-devadhas/zephyrproject/zephyr/dts/bindings
+    files:
+     - /home/golden-devadhas/zephyrproject/zephyr/boards/st/nucleo_l496zg/nucleo_l496zg.dts
+     - /home/golden-devadhas/zephyrproject/sensor-app/app/nucleo_l496zg.overlay
+    include-dirs:
+     - /home/golden-devadhas/zephyrproject/sensor-app/include
+     - /home/golden-devadhas/zephyrproject/sensor-app/dts
+     - /home/golden-devadhas/zephyrproject/modules/hal/stm32/dts
+     - /home/golden-devadhas/zephyrproject/zephyr/include
+     - /home/golden-devadhas/zephyrproject/zephyr/include/zephyr
+     - /home/golden-devadhas/zephyrproject/zephyr/dts/common
+     - /home/golden-devadhas/zephyrproject/zephyr/dts/x86
+     - /home/golden-devadhas/zephyrproject/zephyr/dts/xtensa
+     - /home/golden-devadhas/zephyrproject/zephyr/dts/sparc
+     - /home/golden-devadhas/zephyrproject/zephyr/dts/riscv
+     - /home/golden-devadhas/zephyrproject/zephyr/dts/posix
+     - /home/golden-devadhas/zephyrproject/zephyr/dts/nios2
+     - /home/golden-devadhas/zephyrproject/zephyr/dts/arm64
+     - /home/golden-devadhas/zephyrproject/zephyr/dts/arm
+     - /home/golden-devadhas/zephyrproject/zephyr/dts/arc
+     - /home/golden-devadhas/zephyrproject/zephyr/dts
+    user-files:
+     - /home/golden-devadhas/zephyrproject/sensor-app/app/nucleo_l496zg.overlay
+  kconfig:
+    files:
+     - /home/golden-devadhas/zephyrproject/zephyr/boards/st/nucleo_l496zg/nucleo_l496zg_defconfig
+     - /home/golden-devadhas/zephyrproject/sensor-app/app/prj.conf
+    user-files:
+     - /home/golden-devadhas/zephyrproject/sensor-app/app/prj.conf
+  toolchain:
+    name: zephyr
+    path: /home/golden-devadhas/zephyr-sdk-0.16.5-1
+  zephyr:
+    version: 3.7.99
+    zephyr-base: /home/golden-devadhas/zephyrproject/zephyr
+version: 0.1.0
+west:
+  command: /home/golden-devadhas/.local/bin/west build -b nucleo_l496zg -p
+  topdir: /home/golden-devadhas/zephyrproject
+  version: 1.2.0
