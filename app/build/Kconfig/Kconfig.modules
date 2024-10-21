@@ -1,0 +1,27 @@
+menu "sensor-app (/home/golden-devadhas/zephyrproject/sensor-app)"
+osource "/home/golden-devadhas/zephyrproject/sensor-app/Kconfig"
+config ZEPHYR_SENSOR_APP_MODULE
+	bool
+	default y
+endmenu
+menu "cmsis (/home/golden-devadhas/zephyrproject/modules/hal/cmsis)"
+osource "$(ZEPHYR_CMSIS_KCONFIG)"
+config ZEPHYR_CMSIS_MODULE
+	bool
+	default y
+endmenu
+menu "hal_nordic (/home/golden-devadhas/zephyrproject/modules/hal/nordic)"
+osource "$(ZEPHYR_HAL_NORDIC_KCONFIG)"
+config ZEPHYR_HAL_NORDIC_MODULE
+	bool
+	default y
+
+config ZEPHYR_HAL_NORDIC_MODULE_BLOBS
+	bool
+endmenu
+config ZEPHYR_HAL_STM32_MODULE
+	bool
+	default y
+
+config ZEPHYR_HAL_STM32_MODULE_BLOBS
+	bool

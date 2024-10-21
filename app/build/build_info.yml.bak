@@ -1,0 +1,4 @@
+west:
+  command: /home/golden-devadhas/.local/bin/west build -b nucleo_l496zg -p
+  topdir: /home/golden-devadhas/zephyrproject
+  version: 1.2.0

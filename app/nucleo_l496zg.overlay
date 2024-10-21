@@ -1,3 +1,4 @@
+#include <zephyr/dt-bindings/sensor/tmag5273.h>
 &i2c2 {
 	pinctrl-0 = <&i2c2_scl_pf1 &i2c2_sda_pf0>;
 	pinctrl-names = "default";
@@ -8,8 +9,7 @@
 		compatible = "ti,tmag5273";
 		status ="okay";
 		reg = <0x22>;
-		//int-gpios = <&test_gpio 15 1>:
-
+		
 		operation-mode = <TMAG5273_DT_OPER_MODE_CONTINUOUS>;
 		angle-magnitude-axis = <TMAG5273_DT_ANGLE_MAG_XY>;
 	};
