@@ -1,16 +1,47 @@
-/*
- * Copyright (c) 2012-2014 Wind River Systems, Inc.
- *
- * SPDX-License-Identifier: Apache-2.0
- */
+#include <zephyr/kernel.h>
+#include <zephyr/device.h>
+#include <zephyr/drivers/sensor.h>
+#include <zephyr/logging/log.h>
 
-#include <stdio.h>
-#include <zephyr/shell/shell.h>
-
+LOG_MODULE_REGISTER(main);
 
 int main(void)
 {
-	printf("Hello World! %s\n", CONFIG_BOARD_TARGET);
+    const struct device *sensor = DEVICE_DT_GET_ANY(ti_tmag5273);
+    struct sensor_value value;
 
-	return 0;
+    if (sensor == NULL || !device_is_ready(sensor)) {
+        LOG_ERR("TMAG5273 sensor not found or not ready");
+        return 0;
+    }
+
+    while (1) {
+        
+        if (sensor_sample_fetch(sensor) < 0) {
+            LOG_ERR("Failed to fetch sensor sample");
+            return 0;
+        }
+
+        
+        if (sensor_channel_get(sensor, SENSOR_CHAN_MAGN_X, &value) == 0) {
+            double magn_x = sensor_value_to_double(&value);
+            LOG_INF("Magnetometer X-axis: %lf", magn_x);
+        }
+
+        
+        if (sensor_channel_get(sensor, SENSOR_CHAN_MAGN_Y, &value) == 0) {
+            double magn_y = sensor_value_to_double(&value);
+            LOG_INF("Magnetometer Y-axis: %lf", magn_y);
+        }
+
+       
+        if (sensor_channel_get(sensor, SENSOR_CHAN_MAGN_Z, &value) == 0) {
+            double magn_z = sensor_value_to_double(&value);
+            LOG_INF("Magnetometer Z-axis: %lf", magn_z);
+        }
+
+       
+        k_sleep(K_MSEC(1000));
+    }
+    return 0;
 }
